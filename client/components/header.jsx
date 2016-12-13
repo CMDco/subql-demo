@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-class Header extends Component{
-  constructor(props){
+class Header extends Component {
+  constructor(props) {
     super(props);
   }
 
-  render(){
+  render() {
     return (
       <header>Header</header>
     );

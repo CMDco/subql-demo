@@ -5,6 +5,9 @@ import TaskBoard from './components/taskboard.jsx';
 import styles from './scss/application.scss';
 
 class App extends Component {
+  constructor() {
+    
+  }
   render() {
     return (
       <div>
