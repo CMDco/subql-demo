@@ -5,7 +5,15 @@ import TaskBoard from './components/taskboard.jsx';
 
 class App extends Component {
   constructor() {
-    
+    this.update = this.update.bind(this);
+
+    //subscribe here
+    // use this.update as the callback
+  }
+  update(data) {
+    // implement subql data stuff here and
+    let newState = {};
+    this.setState(newState);
   }
   render() {
     return (
