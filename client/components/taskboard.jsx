@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-class TaskBoard extends Component{
-  constructor(props){
+class TaskBoard extends Component {
+  constructor(props) {
     super(props);
   }
 
-  render(){
+  render() {
     return (
       <div>TaskBoard</div>
     );
