@@ -4,6 +4,9 @@ import Header from './components/header.jsx';
 import TaskBoard from './components/taskboard.jsx';
 
 class App extends Component {
+  constructor() {
+    
+  }
   render() {
     return (
       <div>
