@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var sass = require('sass-loader');
 
 module.exports = {
   // specifies the entry files
@@ -19,6 +20,11 @@ module.exports = {
         test: /\.jsx?/, 
         loader: 'babel',
         include: path.join(__dirname, 'client')
+      },
+      {
+        test: /scss$/,
+        exclude: /node_modules/,
+        loaders: ['style', 'css', 'sass']
       }
     ]
   }, 
