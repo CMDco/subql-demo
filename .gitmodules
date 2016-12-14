@@ -1,0 +1,3 @@
+[submodule "lib/subql"]
+	path = lib/subql
+	url = https://github.com/CMDco/subql
