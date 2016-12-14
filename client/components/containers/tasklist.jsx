@@ -5,8 +5,11 @@ import TaskInput from '../views/taskinput.jsx';
 class TaskList extends Component {
   constructor(props) {
     super(props);
+    console.log(`TaskList props`);
+    console.log(this.props.taskList);
+    console.log(this.props.taskList.tasks);
   }
-  getHandleAddTask(){
+  getHandleAddTask() {
     // this function makes a mutation to add a taskboard
     return function(event){
       return;
@@ -14,12 +17,12 @@ class TaskList extends Component {
   }
 
   getMoveTask(){
-    return function(listIndex, taskIndex, newIndex){
+    return function(listIndex, taskIndex, newIndex) {
       return;
     }
   }
 
-  getRemoveTask(){
+  getRemoveTask() {
     // this function makes a mutation to remove the task from the taskboard
     return function(index){
       return;
@@ -27,8 +30,12 @@ class TaskList extends Component {
   }
 
   render() {
+    let taskitems = [];
+    for(let i = 0; i < this.props.taskList.tasks.length; ++i) {
+      taskitems.push(<TaskItem key={'taskitem'+i} taskItem={this.props.taskList.tasks[i]} />);
+    }
     return (
-      <div><TaskItem /><TaskItem /><TaskInput /></div>
+      <section>{taskitems}<TaskInput /></section>
     );
   }
 }
