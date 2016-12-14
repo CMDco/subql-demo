@@ -6,8 +6,11 @@ const graphqlHTTP = require('express-graphql');
 const app = express();
 const server = require('http').Server(app);
 
+const subql = require('../lib/subql/src/subql.js');
 const { buildSchema } = require('graphql');
-// const { parseSchema, registerResolver, registerType, getRoot } = require('../src/subql.js');
+
+/** GraphQL Setup **/
+const schema = ``;
 
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
