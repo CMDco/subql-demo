@@ -5,17 +5,26 @@ import TaskBoard from './components/containers/taskboard.jsx';
 // import styles from './scss/application.scss';
 
 class App extends Component {
-  constructor() {
+  constructor(props) {
     super(props);
+
+    // bind funtions
     this.update = this.update.bind(this);
-    //subscribe here
-    // use this.update as the callback
   }
+  /** Methods **/
   update(data) {
     // implement subql data stuff here and
     let newState = {};
     this.setState(newState);
   }
+
+  /** Lifecycle Methods **/
+  componentDidMount(){
+    // subscribe and this.update here
+    // use this.update as the callback
+    // subscribe http://localhost:4000/data
+  }
+
   render() {
     return (
       <div>
