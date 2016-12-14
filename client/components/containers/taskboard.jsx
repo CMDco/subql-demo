@@ -4,9 +4,11 @@ import TaskList from './tasklist.jsx';
 class TaskBoard extends Component {
   constructor(props) {
     super(props);
+    console.log(`TaskBoard props`);
+    console.log(this.props.taskLists);
   }
 
-  getMoveList(){
+  getMoveList() {
     // this function handles the moving of the lists
     return function(listIndex, newIndex){
       return;
@@ -14,8 +16,12 @@ class TaskBoard extends Component {
   }
 
   render() {
+    let lists = [];
+    for(let i = 0; i < this.props.taskLists.length; ++i) {
+      lists.push(<TaskList key={'tasklist' + i} taskList={this.props.taskLists[i]} />)
+    }
     return (
-      <div><TaskList /></div>
+      <div id='taskboard'>{lists}</div>
     );
   }
 }

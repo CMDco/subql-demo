@@ -9,7 +9,69 @@ import subql from '../lib/subql/src/client-sockets.js';
 class App extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      'user': {
+        'tasklists': [
+          {
+            tasks: [
+              {
+                'id': 0,
+                'title': 'task 0-0 &&&&&',
+                'content': 'Demo fun!',
+                'comments': [
+                  {
+                    author: 'Martin',
+                    content: 'MT comments',
+                  },
+                  {
+                    author: 'Dean',
+                    content: 'Dean Code'
+                  }
+                ]
+              },
+              {
+                'id': 0,
+                'title': 'task 1-0 &&&&&',
+                'content': 'Demo time!',
+                'comments': [
+                  {
+                    author: 'Ping',
+                    content: 'pong more',
+                  },
+                  {
+                    author: 'Ling',
+                    content: 'Don\'t even go there'
+                  }
+                ]
+              }
+            ],
+            'position': 0,
+            'title': 'In Progress'
+          },
+          {
+            tasks: [
+              {
+                'id': 101,
+                'title': 'task! 0-1',
+                'content': 'we need to do 0-1',
+                'comments': [
+                  {
+                    author: 'John',
+                    content: 'John comments',
+                  },
+                  {
+                    author: 'Boof',
+                    content: 'Boof more'
+                  }
+                ]
+              }
+            ],
+            'position': 1,
+            'title': 'QA\'d'
+          },
+        ],
+      }
+    }
     // bind funtions
     this.update = this.update.bind(this);
   }
@@ -28,10 +90,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.user.tasklists);
     return (
       <div>
         <Header />
-        <TaskBoard />
+        <TaskBoard taskLists={this.state.user.tasklists}/>
       </div>
     );
   }
