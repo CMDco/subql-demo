@@ -18,6 +18,7 @@ type User {
 }
 
 type TaskList{
+  id: ID!
   tasks: [Task]
   position: Int
   title: String 
@@ -71,7 +72,7 @@ type Mutation{
   updateComment(id: ID!, comment: String): Comment
 }
 `;
-
+// paramaters may need to be edited into object destructoring
 class User { 
   constructor(id, taskList, activityFeed) { 
     this.id = id;
@@ -81,7 +82,8 @@ class User {
 }
 
 class TaskList { 
-  constructor(tasks, position, title) { 
+  constructor(id, tasks, position, title) {
+    this.id = id;
     this.tasks = tasks;
     this.position = position;
     this.title = title; 
@@ -97,6 +99,30 @@ class Task {
     this.assigned = assigned;
   }
 }
+
+class Activity { 
+  constructor(time, content, author) { 
+    this.time = time;
+    this.content = content;
+    this.author = author; 
+  }
+}
+class Comment { 
+  constructor(id, content, author, date) { 
+    this.id = id;
+    this.content = content;
+    this.author = author;
+    this.date = date;
+  }
+}
+
+// function user({id}) {
+//   //get user froom db 
+//   //get tasklist from db
+//   // get activityFeed from db
+//   return new User(id, tasklist, activityfeed);
+  
+//  }
 
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
