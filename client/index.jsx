@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import Header from './components/containers/header.jsx';
 import TaskBoard from './components/containers/taskboard.jsx';
-
-import subql from '../lib/subql/src/client-sockets.js';
+import ActivityFeed from './components/containers/activityFeed.jsx';
+import subql from './../lib/subql/src/client-sockets.js';
 // import styles from './scss/application.scss';
 
 class App extends Component {
@@ -69,7 +69,29 @@ class App extends Component {
             'position': 1,
             'title': 'QA\'d'
           },
-        ],
+          ],
+        activityFeed: [
+            {
+                time: Math.floor(Math.random() * 3000),
+                content: "lsdkfjkslfjsdf",
+                author: "deancode"
+            },
+            {
+                time: Math.floor(Math.random() * 3000),
+                content: "lsdkfjkslfjsdf",
+                author: "deancode"
+            },
+            {
+                time: Math.floor(Math.random() * 3000),
+                content: "lsdkfjkslfjsdf",
+                author: "deancode"
+            },
+            {
+                time: Math.floor(Math.random() * 3000),
+                content: "lsdkfjkslfjsdf",
+                author: "deancode"
+            }
+        ]
       }
     }
     // bind funtions
@@ -94,7 +116,8 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <TaskBoard taskLists={this.state.user.tasklists}/>
+        <TaskBoard taskLists={this.state.user.tasklists} />
+        <ActivityFeed activFeed={this.state.user.activityFeed}/>
       </div>
     );
   }
