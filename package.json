@@ -37,6 +37,7 @@
   "homepage": "https://github.com/deancode/subql-demo#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "express-graphql": "^0.6.1",
     "graphql": "^0.8.2",
     "object-hash": "^1.1.5",
     "react": "^15.4.1",

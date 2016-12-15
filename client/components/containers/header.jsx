@@ -7,7 +7,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header>Header</header>
+      <header id='header'>Header</header>
     );
   }
 }

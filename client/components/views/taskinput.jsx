@@ -4,10 +4,11 @@ class TaskInput extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div>
-        <input type={'text'} placeholder={'Enter a task.'} />
+        <input className='classinput' type={'text'} placeholder={'Enter a task.'} />
       </div>
     )
   }
