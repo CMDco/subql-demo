@@ -6,7 +6,7 @@ const graphqlHTTP = require('express-graphql');
 const app = express();
 const server = require('http').Server(app);
 
-const subql = require('../lib/subql/src/subql.js');
+const subql = require('./../lib/subql/src/subql.js');
 const { buildSchema } = require('graphql');
 
 
@@ -57,7 +57,7 @@ type Comment{
 
 
 type Query {
-  getUser(id: ID!): User
+  user(id: ID!): User
   getTask(id: ID!): Task
 }
 type Mutation{
