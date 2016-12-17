@@ -7,7 +7,7 @@ class TaskInput extends Component {
 
   render() {
     return (
-      <div>
+      <div className='taskinput'>
         <input className='classinput' type={'text'} placeholder={'Enter a task.'} />
       </div>
     )
