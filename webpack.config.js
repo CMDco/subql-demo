@@ -22,7 +22,7 @@ module.exports = {
         include: path.join(__dirname, 'client')
       },
       {
-        test: /scss$/, // /scss$/?
+        test: /scss$/,
         exclude: /node_modules/,
         loaders: ['style', 'css', 'sass']
       }
