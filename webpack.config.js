@@ -27,7 +27,7 @@ module.exports = {
         loaders: ['style', 'css', 'sass']
       }
     ]
-  }, 
+  },
   // additional functionality. htmlwebpackplugin or minify goes here
   plugins: [
     // Auto generate our html page https://www.npmjs.com/package/html-webpack-plugin

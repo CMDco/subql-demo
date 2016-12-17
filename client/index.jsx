@@ -4,7 +4,7 @@ import Header from './components/containers/header.jsx';
 import TaskBoard from './components/containers/taskboard.jsx';
 import ActivityFeed from './components/containers/activityFeed.jsx';
 import subql from './../lib/subql/src/client-sockets.js';
-// import styles from './scss/application.scss';
+import styles from './scss/application.scss';
 
 class App extends Component {
   constructor(props) {

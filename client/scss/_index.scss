@@ -1,3 +1,52 @@
-body {
-  background: $lightBlue;
+/*
+$lightGoldenBrown: #fcd630;
+$lightTeal: #56BDA2;
+$midTeal: #2494A2;
+$midNavyBlue: #304B78;
+$darkNavyBlue: #2D325A;
+$darkBlueBlack: #0A0E29;
+*/
+
+header {
+  width: 100%;
+  height: 50px;
+  background-color: $darkNavyBlue;
+}
+
+#taskboard {
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+}
+
+/*tasklist*/
+#taskboard > section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  background-color: navajowhite;
+  width: 100%;
+}
+
+/* task item */
+.taskitem article {
+  width: 200px;
+  height:150px;
+  background-color: white;
+  border: 1px solid $darkBlueBlack;
+  margin: 20px;
+}
+.taskinput {
+  width: 200px;
+  height:150px;
+  background-color: white;
+  margin: 20px;
+}
+
+.taskitem article h2 {
+  width:100%;
+  background-color: $lightTeal;
 }
