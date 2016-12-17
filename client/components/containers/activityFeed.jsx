@@ -7,7 +7,7 @@ class ActivityFeed extends Component{
   }
   render() {
       let activities = [];
-      this.props.activFeed.forEach(activity => { 
+      this.props.activFeed.forEach(activity => {
           activities.push(<Activity time={activity.time} content={activity.content} author={activity.author}/>)
       })
     return (
