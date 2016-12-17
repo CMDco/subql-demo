@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var sass = require('sass-loader');
 
+const styles = require('./client/scss/application.scss');
+
 module.exports = {
   // specifies the entry files
   // when provided with array it will go through all the files
@@ -22,12 +24,12 @@ module.exports = {
         include: path.join(__dirname, 'client')
       },
       {
-        test: /scss$/,
+        test: /\.scss$/, // /scss$/?
         exclude: /node_modules/,
         loaders: ['style', 'css', 'sass']
       }
     ]
-  }, 
+  },
   // additional functionality. htmlwebpackplugin or minify goes here
   plugins: [
     // Auto generate our html page https://www.npmjs.com/package/html-webpack-plugin
