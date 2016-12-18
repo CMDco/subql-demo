@@ -21,13 +21,25 @@ header {
 }
 
 /*tasklist*/
-#taskboard > section {
+.tasklist {
+  background-color: navajowhite;
+  width: 100%;
+}
+
+.tasklisttitlecontainer {
+  border-top: 1px solid $darkNavyBlue;
+  border-bottom: 1px solid $darkNavyBlue;
+  width: 100%;
+}
+.tasklisttitle {
+  margin: 5px;
+}
+.tasklist > section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 
-  background-color: navajowhite;
   width: 100%;
 }
 
@@ -39,14 +51,49 @@ header {
   border: 1px solid $darkBlueBlack;
   margin: 20px;
 }
+
+.removeTaskButton {
+  position: relative;
+  right: -187px;
+  top: -23px;
+}
 .taskinput {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction:column;
+  
   width: 200px;
   height:150px;
   background-color: white;
   margin: 20px;
 }
 
+.taskinput {
+  border: 1px solid $darkBlueBlack;
+}
+
+.tasktitleinput {
+  width: 198px;
+  height: 17%;
+  border: 0;
+  background-color: $lightTeal;
+}
+
+.taskbodyinput {
+  width: 195px;
+  height:83%;
+  border: 0;
+  resize: none;
+}
+
+/*.taskinput input{
+  position:relative;
+  bottom: 0px;
+  width: 195px;
+}*/
+
 .taskitem article h2 {
   width:100%;
+  height:25px;
   background-color: $lightTeal;
 }

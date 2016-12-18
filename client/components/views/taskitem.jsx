@@ -10,8 +10,9 @@ class TaskItem extends Component {
     return (
       <div className='taskitem'>
       <article>
-        <h2>{this.props.taskItem.title}</h2>
+        <h2>{this.props.taskItem.title}</h2><span className='removeTaskButton'>X</span>
         <p>{this.props.taskItem.content}</p>
+
       </article>
       </div>
     )
