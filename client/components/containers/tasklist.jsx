@@ -35,7 +35,13 @@ class TaskList extends Component {
       taskitems.push(<TaskItem key={'taskitem'+i} taskItem={this.props.taskList.tasks[i]} />);
     }
     return (
-      <section>{taskitems}<TaskInput /></section>
+      <div className="tasklist">
+      <div className="tasklisttitlecontainer">
+      <h2 className="tasklisttitle">{this.props.taskList.title}</h2>
+      </div>
+      <section>
+      {taskitems}<TaskInput /></section>
+      </div>
     );
   }
 }
