@@ -36,11 +36,12 @@ class TaskList extends Component {
     }
     return (
       <div className="tasklist">
-      <div className="tasklisttitlecontainer">
-      <h2 className="tasklisttitle">{this.props.taskList.title}</h2>
-      </div>
-      <section>
-      {taskitems}<TaskInput /></section>
+        <div className="tasklisttitlecontainer title-depth">
+          <h2 className="tasklisttitle">{this.props.taskList.title}</h2>
+        </div>
+        <section>
+          {taskitems}<TaskInput />
+        </section>
       </div>
     );
   }

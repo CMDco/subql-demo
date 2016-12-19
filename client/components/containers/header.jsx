@@ -7,7 +7,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header id='header'>Header</header>
+      <header id='header'><h2>SubQL Tasks</h2></header>
     );
   }
 }
