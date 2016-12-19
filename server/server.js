@@ -65,6 +65,8 @@ type Mutation {
   removeTask( userid : Int, tasklistid: Int, taskid : Int ): [TaskList]
 }
 `;
+
+schema = buildSchema(schema);
 // type Query {
 //   user(id: ID!): User
 //   getTask(id: ID!): Task
@@ -127,23 +129,44 @@ class Comment {
 
 function removeTask({userid, tasklistid, taskid}){
   console.log(`removeTask :: userid ${userid} tasklistid ${tasklistid} taskid ${taskid}`);
-  let result = removeTask(userid, tasklistid, taskid);
-  let tasklists = [];
-  result[userid].tasklists.forEach(elem => {
-    let currlist = new TaskList(tasklistid, elem.tasks, elem.title);
-    console.log(`removeTask :: constructed taskList`);
-    console.log(JSON.stringify(currlist, null, 2));
-    tasklists.push(currlist);
-  });
-  return tasklists;
+  let result = db_removeTask(userid, tasklistid, taskid);
+  let returnTasklist = tasklistReturn(result.tasklists);
+  return returnTasklist;
 }
-function addTask({}){
-  return;
+function addTask({userid, tasklistid, title, content}){
+  let user = db_addTask(userid, tasklistid, title, content);
+  let tasklists = user.tasklists;
+  let returnArray = tasklistReturn(tasklists);
+  return returnArray;
 }
-function tasklist(){
-  return;
+function tasklist({userid}){
+  return tasklistReturn(db.user.tasklists);
 }
 
+
+function tasklistReturn(taskLists) {
+  let tasklistreturn = [];
+  taskLists.forEach((tasklist, i) => {
+    var id = i;
+    var title = tasklist.title;
+    var tasks = [];
+    tasklist.tasks.forEach((task, j) => {
+      var taskid = j;
+      var tasktitle = task.title;
+      var taskcontent = task.content;
+      var taskcomments = [];
+      task.comments.forEach((comment, k) => {
+        var commentid = k;
+        var commentcontent = comment.content;
+        var commentauthor = comment.author;
+        taskcomments.push(new Comment(commentid, commentcontent, commentauthor));
+      });
+      tasks.push(new Task(taskid, tasktitle, taskcontent, taskcomments));
+    });
+    tasklistreturn.push(new TaskList(id, tasks, title));
+  });
+  return tasklistreturn;
+}
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
 app.get('/', function (req, res) {

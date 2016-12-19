@@ -41,21 +41,22 @@ let db = {
 }
 
 console.log(db);
-function getUser(id){
-  return db.user[id];
+function db_getUser(id){
+  return db.user;
 }
 
-function addTask(id, tasklistid, title, content){
-  db.user[id].tasklists[tasklistid].tasks.push({title, content, comments:[]});
-  return db.user[id];
+function db_addTask(id, tasklistid, title, content){
+  //id is irrelevant 
+  db.user.tasklists[tasklistid].tasks.push({title, content, comments:[]});
+  return db.user;
 }
 
-function removeTask(id, tasklistid, taskid){
-  db.user[id].tasklists[tasklistid].tasks.splice(taskid, 1);
-  return db.user[id];
+function db_removeTask(id, tasklistid, taskid){
+  db.user.tasklists[tasklistid].tasks.splice(taskid, 1);
+  return db.user;
 }
 
-function printDB(){
+function db_printDB(){
   console.log(JSON.stringify(db, null, 2));
 }
 
