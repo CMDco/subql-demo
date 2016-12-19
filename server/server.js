@@ -164,8 +164,6 @@ function tasklistReturn(taskLists) {
         taskcomments.push(nuComment);
       });
       tasks.push(new Task(taskid, tasktitle, taskcontent, taskcomments));
-            console.log('fail?')
-
     });
     tasklistreturn.push(new TaskList(id, tasks, title));
   });
