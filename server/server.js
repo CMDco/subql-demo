@@ -11,7 +11,7 @@ const { buildSchema } = require('graphql');
 
 const {db, db_getUser, db_addTask, db_removeTask, db_printDB} = require('./db/db');
 
-const schema = `
+let schema = `
 type User {
   id: ID!
   taskList: [TaskList]
@@ -35,7 +35,7 @@ type Task{
 }
 
 type Activity{
-  time: Date
+  time: Int
   content: String 
   author: String
 }
@@ -54,7 +54,7 @@ type Comment{
   id: ID!
   author: String
   content: String
-  date: Date
+  date: Int
 }
 
 type Query {
@@ -103,7 +103,7 @@ class Task {
     this.id = id;
     this.title = title;
     this.content = content;
-    this.comments = comment;
+    this.comments = comments;
     // this.label = label; 
     // this.author = author; 
     // this.assigned = assigned;
@@ -127,45 +127,66 @@ class Comment {
   }
 }
 
-function removeTask({userid, tasklistid, taskid}){
-  console.log(`removeTask :: userid ${userid} tasklistid ${tasklistid} taskid ${taskid}`);
-  let result = db_removeTask(userid, tasklistid, taskid);
-  let returnTasklist = tasklistReturn(result.tasklists);
-  return returnTasklist;
-}
-function addTask({userid, tasklistid, title, content}){
-  let user = db_addTask(userid, tasklistid, title, content);
-  let tasklists = user.tasklists;
-  let returnArray = tasklistReturn(tasklists);
-  return returnArray;
-}
-function tasklist({userid}){
-  return tasklistReturn(db.user.tasklists);
-}
+// function removeTask({userid, tasklistid, taskid}){
+//   console.log(`removeTask :: userid ${userid} tasklistid ${tasklistid} taskid ${taskid}`);
+//   let result = db_removeTask(userid, tasklistid, taskid);
+//   let returnTasklist = tasklistReturn(result.tasklists);
+//   return returnTasklist;
+// }
+// function addTask({userid, tasklistid, title, content}){
+//   let user = db_addTask(userid, tasklistid, title, content);
+//   let tasklists = user.tasklists;
+//   let returnArray = tasklistReturn(tasklists);
+//   return returnArray;
+// }
+// function tasklist({userid}){
+//   console.log('tasklist: db.user.tasklists::::::::', db.user.tasklists)
+//   return tasklistReturn(db.user.tasklists);
+// }
 
 
 function tasklistReturn(taskLists) {
   let tasklistreturn = [];
   taskLists.forEach((tasklist, i) => {
-    var id = i;
-    var title = tasklist.title;
-    var tasks = [];
+    let id = i;
+    let title = tasklist.title;
+    let tasks = [];
     tasklist.tasks.forEach((task, j) => {
-      var taskid = j;
-      var tasktitle = task.title;
-      var taskcontent = task.content;
-      var taskcomments = [];
+      let taskid = j;
+      let tasktitle = task.title;
+      let taskcontent = task.content;
+      let taskcomments = [];
       task.comments.forEach((comment, k) => {
-        var commentid = k;
-        var commentcontent = comment.content;
-        var commentauthor = comment.author;
-        taskcomments.push(new Comment(commentid, commentcontent, commentauthor));
+        let commentid = k;
+        let commentcontent = comment.content;
+        let commentauthor = comment.author;
+        let newComment = new Comment(commentid, commentcontent, commentauthor)
+        taskcomments.push(newComment);
       });
       tasks.push(new Task(taskid, tasktitle, taskcontent, taskcomments));
     });
     tasklistreturn.push(new TaskList(id, tasks, title));
   });
   return tasklistreturn;
+}
+
+
+
+const root ={
+  removeTask: ({userid, tasklistid, taskid}) => {
+    let result = db_removeTask(userid, tasklistid, taskid);
+    let returnTasklist = tasklistReturn(result[0].tasklists);
+    return returnTasklist;
+  },
+  addTask: ({userid, tasklistid, title, content}) => {
+    let user = db_addTask(userid, tasklistid, title, content);
+    let tasklists = user[0].tasklists;
+    let returnArray = tasklistReturn(tasklists);
+    return returnArray;
+  }, 
+  tasklist: ({userid}) => {
+    return tasklistReturn(db.user[0].tasklists);
+  }
 }
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
