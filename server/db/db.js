@@ -47,12 +47,12 @@ function db_getUser(id){
 
 function db_addTask(id, tasklistid, title, content){
   //id is irrelevant 
-  db.user.tasklists[tasklistid].tasks.push({title, content, comments:[]});
+  db.user[0].tasklists[tasklistid].tasks.push({title, content, comments:[]});
   return db.user;
 }
 
 function db_removeTask(id, tasklistid, taskid){
-  db.user.tasklists[tasklistid].tasks.splice(taskid, 1);
+  db.user[0].tasklists[tasklistid].tasks.splice(taskid, 1);
   return db.user;
 }
 
