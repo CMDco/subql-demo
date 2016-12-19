@@ -61,7 +61,8 @@ function printDB(){
 
 module.exports = {
   db,
-  addTask,
-  removeTask,
-  printDB
+  db_getUser,
+  db_addTask,
+  db_removeTask,
+  db_printDB
 }
