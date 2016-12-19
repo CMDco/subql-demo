@@ -117,12 +117,11 @@ class App extends Component {
       <div>
         <Header />
         <TaskBoard taskLists={this.state.user.tasklists} />
-        <ActivityFeed activFeed={this.state.user.activityFeed}/>
       </div>
     );
   }
 }
-
+//      <ActivityFeed activFeed={this.state.user.activityFeed}/>
 render(<App />, document.getElementById('app'));
 
 export default App;

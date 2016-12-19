@@ -10,7 +10,18 @@ $darkBlueBlack: #0A0E29;
 header {
   width: 100%;
   height: 50px;
-  background-color: $darkNavyBlue;
+  background-color: $yarnBlue;
+}
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+header h2{
+  position: relative;
+  top: 10px;
+  left: 10px;
+  font-size: 29px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
 }
 
 #taskboard {
@@ -22,18 +33,24 @@ header {
 
 /*tasklist*/
 .tasklist {
-  background-color: navajowhite;
+  background-color: #e8e8e8;
   width: 100%;
+
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .tasklisttitlecontainer {
-  border-top: 1px solid $darkNavyBlue;
-  border-bottom: 1px solid $darkNavyBlue;
+  border-bottom: 1px solid rgba(20,20,20, 0.4);
+  border-top: 6px solid white;
+  height: 22px;
   width: 100%;
 }
+
 .tasklisttitle {
-  margin: 5px;
+  margin: 4px;
 }
+
 .tasklist > section {
   display: flex;
   flex-direction: row;
@@ -48,15 +65,16 @@ header {
   width: 200px;
   height:150px;
   background-color: white;
-  border: 1px solid $darkBlueBlack;
-  margin: 20px;
+  margin: 15px;
 }
 
 .removeTaskButton {
   position: relative;
-  right: -187px;
-  top: -23px;
+  right: -184px;
+  top: -20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
 .taskinput {
   display: flex;
   justify-content: flex-start;
@@ -65,18 +83,24 @@ header {
   width: 200px;
   height:150px;
   background-color: white;
-  margin: 20px;
+  margin: 15px;
 }
 
 .taskinput {
-  border: 1px solid $darkBlueBlack;
+
+}
+
+.taskitemtitle {
+  position: relative;
+  top: 4px;
+  left: 4px;
 }
 
 .tasktitleinput {
   width: 198px;
   height: 17%;
   border: 0;
-  background-color: $lightTeal;
+  background-color: $midTeal*1.444;
 }
 
 .taskbodyinput {
@@ -95,5 +119,18 @@ header {
 .taskitem article h2 {
   width:100%;
   height:25px;
-  background-color: $lightTeal;
+  background-color: $midTeal*1.444;
+}
+
+.xtitle-depth {
+  box-shadow: 0 4px 13px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.22);
+}
+
+.card-depth {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-depth:hover{
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25), 0 6px 6px rgba(0,0,0,0.22);
 }

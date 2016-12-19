@@ -9,8 +9,8 @@ class TaskItem extends Component {
   render() {
     return (
       <div className='taskitem'>
-      <article>
-        <h2>{this.props.taskItem.title}</h2><span className='removeTaskButton'>X</span>
+      <article className='card-depth'>
+        <h2><span className='taskitemtitle'>{this.props.taskItem.title}</span></h2><span className='removeTaskButton'>X</span>
         <p>{this.props.taskItem.content}</p>
 
       </article>
