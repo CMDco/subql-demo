@@ -148,20 +148,20 @@ class Comment {
 function tasklistReturn(taskLists) {
   let tasklistreturn = [];
   taskLists.forEach((tasklist, i) => {
-    var id = i;
-    var title = tasklist.title;
-    var tasks = [];
+    let id = i;
+    let title = tasklist.title;
+    let tasks = [];
     tasklist.tasks.forEach((task, j) => {
-      var taskid = j;
-      var tasktitle = task.title;
-      var taskcontent = task.content;
-      var taskcomments = [];
+      let taskid = j;
+      let tasktitle = task.title;
+      let taskcontent = task.content;
+      let taskcomments = [];
       task.comments.forEach((comment, k) => {
-        var commentid = k;
-        var commentcontent = comment.content;
-        var commentauthor = comment.author;
-        var nuComment = new Comment(commentid, commentcontent, commentauthor)
-        taskcomments.push(nuComment);
+        let commentid = k;
+        let commentcontent = comment.content;
+        let commentauthor = comment.author;
+        let newComment = new Comment(commentid, commentcontent, commentauthor)
+        taskcomments.push(newComment);
       });
       tasks.push(new Task(taskid, tasktitle, taskcontent, taskcomments));
     });
@@ -174,19 +174,19 @@ function tasklistReturn(taskLists) {
 
 const root ={
   removeTask: ({userid, tasklistid, taskid}) => {
-  let result = db_removeTask(userid, tasklistid, taskid);
-  let returnTasklist = tasklistReturn(result[0].tasklists);
-  return returnTasklist;
+    let result = db_removeTask(userid, tasklistid, taskid);
+    let returnTasklist = tasklistReturn(result[0].tasklists);
+    return returnTasklist;
   },
   addTask: ({userid, tasklistid, title, content}) => {
-  let user = db_addTask(userid, tasklistid, title, content);
-  let tasklists = user[0].tasklists;
-  let returnArray = tasklistReturn(tasklists);
-  return returnArray;
+    let user = db_addTask(userid, tasklistid, title, content);
+    let tasklists = user[0].tasklists;
+    let returnArray = tasklistReturn(tasklists);
+    return returnArray;
   }, 
   tasklist: ({userid}) => {
-  return tasklistReturn(db.user[0].tasklists);
-}
+    return tasklistReturn(db.user[0].tasklists);
+  }
 }
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
