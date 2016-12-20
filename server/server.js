@@ -161,7 +161,6 @@ registerType(Activity, 'author');
 registerType(Comment, 'id', 'author');
 registerResolver(removeTask, addTask, gtasklist);
 let root = getRoot();
-console.log(root);
 
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
