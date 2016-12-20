@@ -27,6 +27,7 @@ type TaskList{
 
 type Task{
   id: ID!
+  title: String
   content: String
   comments: [Comment]
   assigned: Int

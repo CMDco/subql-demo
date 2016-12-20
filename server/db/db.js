@@ -6,7 +6,7 @@ let db = {
           title: 'In-Progress',
           tasks: [
             {
-              title: 'Client data needs type checking',
+              title: 'Check client data type',
               content: 'Type checking needs to be performed on the information recieved on the server side',
               comments: [
                 {author: 'Martin', content: 'This might be tricky see issue #51'},
@@ -14,7 +14,7 @@ let db = {
               ]
             },
             {
-              title: 'JobQueue tasks should repopulate queue',
+              title: 'repopulate JobQueue',
               content: 'Sometimes, JobQueue don\'t get placed back on the queue',
               comments: [
                 {author: 'Martin', content: 'The reload flag should be in the Job class not the watchdog class'},
@@ -27,7 +27,7 @@ let db = {
           title: 'Completed',
           tasks: [
             {
-              title: 'ListType operations should be placed on Job Queue',
+              title: 'ListTypes => JobQueue',
               content: 'Operations should be parced and sent to the right processor',
               comments: [
                 {author: 'Martin', content: 'The implementation for Job Queue is almost complete'}
@@ -40,7 +40,6 @@ let db = {
   ]
 }
 
-console.log(db);
 function db_getUser(id){
   return db.user;
 }
