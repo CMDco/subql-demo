@@ -46,6 +46,8 @@ class App extends Component {
       if(data.data){
         console.log(JSON.stringify(data.data, null, 2));
         this.setState(data.data);
+      }else{
+        this.setState({gtasklist:data});
       }
     });
   }
@@ -55,7 +57,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <TaskBoard taskLists={this.state.gtasklist} />
+        <TaskBoard taskLists={this.state.gtasklist} makeMutation={subql.graphql}/>
       </div>
     );
   }
