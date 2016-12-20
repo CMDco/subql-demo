@@ -6,9 +6,9 @@ const graphqlHTTP = require('express-graphql');
 const app = express();
 const server = require('http').Server(app);
 
-const subql = require('./../lib/subql/src/subql.js');
+const { registerResolver, getRoot, registerType, parseSchema } = require('./../lib/subql/src/subql.js');
 const { buildSchema } = require('graphql');
-
+const {setup} = require('./../lib/subql/src/sockets.js');
 const {db, db_getUser, db_addTask, db_removeTask, db_printDB} = require('./db/db');
 
 let schema = `
@@ -54,11 +54,10 @@ type Comment{
   id: ID!
   author: String
   content: String
-  date: Int
 }
 
 type Query {
-  tasklist( userid : Int ): [TaskList]
+  gtasklist( userid : Int ): [TaskList]
 }
 type Mutation {
   addTask( userid : Int, tasklistid : Int, title : String, content : String ): [TaskList]
@@ -66,83 +65,46 @@ type Mutation {
 }
 `;
 
-schema = buildSchema(schema);
-// type Query {
-//   user(id: ID!): User
-//   getTask(id: ID!): Task
-// }
-// type Mutation{
-//   addTask(position: Int!, task: TaskInput): Task
-//   addComment(taskId: ID!, comment: String): Task
-//   updateTaskListTitle(position: Int!, title: String): TaskList
-//   assignTask(taskID: ID!, assignment: Int): Task
-//   removeTask(taskID: ID!): TaskList
-//   moveTask(id:ID!, position: Int):TaskList
-//   addActivity(input: ActivityInput): Activity
-//   updateComment(id: ID!, comment: String): Comment
-// }
-// `;
-// paramaters may need to be edited into object destructoring
+
 class User { 
-  constructor(id, taskList) {//, activityFeed) { 
+  constructor(id, taskList) {
     this.id = id;
     this.taskList = taskList;
-    // this.activityFeed = activityFeed;
   }
 }
 
 class TaskList { 
-  constructor(id, tasks, /*position,*/ title) {
+  constructor(id, tasks, title) {
     this.id = id;
     this.tasks = tasks;
     this.title = title; 
   }
 }
 class Task { 
-  constructor(id, title, content, comments) {//, label, author, assigned = null) { 
+  constructor(id, title, content, comments) {
     this.id = id;
     this.title = title;
     this.content = content;
     this.comments = comments;
-    // this.label = label; 
-    // this.author = author; 
-    // this.assigned = assigned;
   }
 }
 
 class Activity { 
   constructor(time, content, author) { 
-    this.time = time;
     this.content = content;
     this.author = author; 
   }
 }
 
 class Comment { 
-  constructor(id, content, author/*, date*/) { 
+  constructor(id, content, author) { 
     this.id = id;
     this.content = content;
     this.author = author;
-    // this.date = date;
   }
 }
 
-// function removeTask({userid, tasklistid, taskid}){
-//   console.log(`removeTask :: userid ${userid} tasklistid ${tasklistid} taskid ${taskid}`);
-//   let result = db_removeTask(userid, tasklistid, taskid);
-//   let returnTasklist = tasklistReturn(result.tasklists);
-//   return returnTasklist;
-// }
-// function addTask({userid, tasklistid, title, content}){
-//   let user = db_addTask(userid, tasklistid, title, content);
-//   let tasklists = user.tasklists;
-//   let returnArray = tasklistReturn(tasklists);
-//   return returnArray;
-// }
-// function tasklist({userid}){
-//   console.log('tasklist: db.user.tasklists::::::::', db.user.tasklists)
-//   return tasklistReturn(db.user.tasklists);
-// }
+
 
 
 function tasklistReturn(taskLists) {
@@ -172,22 +134,34 @@ function tasklistReturn(taskLists) {
 
 
 
-const root ={
-  removeTask: ({userid, tasklistid, taskid}) => {
-    let result = db_removeTask(userid, tasklistid, taskid);
-    let returnTasklist = tasklistReturn(result[0].tasklists);
-    return returnTasklist;
-  },
-  addTask: ({userid, tasklistid, title, content}) => {
-    let user = db_addTask(userid, tasklistid, title, content);
-    let tasklists = user[0].tasklists;
-    let returnArray = tasklistReturn(tasklists);
-    return returnArray;
-  }, 
-  tasklist: ({userid}) => {
-    return tasklistReturn(db.user[0].tasklists);
-  }
+function removeTask ({userid, tasklistid, taskid}) {
+  let result = db_removeTask(userid, tasklistid, taskid);
+  let returnTasklist = tasklistReturn(result[0].tasklists);
+  return returnTasklist;
 }
+
+function addTask ({userid, tasklistid, title, content}) {
+  let user = db_addTask(userid, tasklistid, title, content);
+  let tasklists = user[0].tasklists;
+  let returnArray = tasklistReturn(tasklists);
+  return returnArray;
+}
+
+function gtasklist({userid}) {
+  return tasklistReturn(db.user[0].tasklists);
+}
+
+
+parseSchema(schema);
+schema = buildSchema(schema);
+registerType(User, 'id');
+registerType(TaskList, 'id');
+registerType(Task, 'id');
+registerType(Activity, 'author');
+registerType(Comment, 'id', 'author');
+registerResolver(removeTask, addTask, gtasklist);
+let root = getRoot();
+
 app.use(express.static(path.join(__dirname + '/../dist/')));
 
 app.get('/', function (req, res) {
@@ -199,7 +173,7 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root,
   graphiql: true,
 }));
-
+setup(server);
 server.listen(8080, () => {
   console.log('Server started on port 8080');
 });
