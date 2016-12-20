@@ -40,7 +40,6 @@ let db = {
   ]
 }
 
-console.log(db);
 function db_getUser(id){
   return db.user;
 }
