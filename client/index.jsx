@@ -105,7 +105,8 @@ class App extends Component {
   }
 
   /** Lifecycle Methods **/
-  componentDidMount(){
+  componentDidMount() {
+    subscribe('http://localhost:8080', `query {gtasklist{id position title tasks{ id content comments{ author idcontent}}}}`, null, this.update);
     // subscribe and this.update here
     // use this.update as the callback
     // subscribe http://localhost:4000/data
