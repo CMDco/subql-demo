@@ -22,17 +22,10 @@ class TaskList extends Component {
     }
   }
 
-  getRemoveTask(index) {
-    // this function makes a mutation to remove the task from the taskboard
-    return function(event){
-      return;
-    }
-  }
-
   render() {
     let taskitems = [];
     for(let i = 0; i < this.props.taskList.tasks.length; ++i) {
-      taskitems.push(<TaskItem key={'taskitem'+i} taskItem={this.props.taskList.tasks[i]} />);
+      taskitems.push(<TaskItem key={'taskitem'+i} taskItem={this.props.taskList.tasks[i]} makeMutation={this.props.makeMutation} taskListID={this.props.taskListID} taskItemID={i}/>);
     }
     return (
       <div className="tasklist">

@@ -18,7 +18,7 @@ class TaskBoard extends Component {
   render() {
     let lists = [];
     for(let i = 0; i < this.props.taskLists.length; ++i) {
-      lists.push(<TaskList key={'tasklist' + i} taskList={this.props.taskLists[i]} />)
+      lists.push(<TaskList key={'tasklist' + i} taskListID={i} taskList={this.props.taskLists[i]} makeMutation={this.props.makeMutation}/>)
     }
     return (
       <div id='taskboard'>{lists}</div>
