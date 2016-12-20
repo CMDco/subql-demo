@@ -22,9 +22,9 @@ class TaskList extends Component {
     }
   }
 
-  getRemoveTask() {
+  getRemoveTask(index) {
     // this function makes a mutation to remove the task from the taskboard
-    return function(index){
+    return function(event){
       return;
     }
   }
