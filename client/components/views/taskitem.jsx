@@ -4,13 +4,26 @@ class TaskItem extends Component {
     super(props);
     console.log(`taskitem props`);
     console.log(this.props);
+    this.getRemoveTask = this.getRemoveTask.bind(this);
   }
-
+  getRemoveTask(index) {
+    const makeMutation = this.props.makeMutation;
+    const taskListID = this.props.taskListID;
+    const taskItemID = this.props.taskItemID;
+    return (event) => {
+      makeMutation(`mutation {
+        removeTask(userid: 0, tasklistid:${taskListID}, taskid:${taskItemID}){
+          id
+        }
+      }`)
+      return;
+    }
+  }
   render() {
     return (
       <div className='taskitem'>
       <article className='card-depth'>
-        <h2><span className='taskitemtitle'>{this.props.taskItem.title}</span></h2><span className='removeTaskButton'>X</span>
+        <h2><span className='taskitemtitle'>{this.props.taskItem.title}</span></h2><span className='removeTaskButton' onClick={this.getRemoveTask(this.props.taskListID)}>X</span>
         <p>{this.props.taskItem.content}</p>
 
       </article>
