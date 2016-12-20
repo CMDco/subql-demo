@@ -11,7 +11,6 @@ class TaskItem extends Component {
     const taskListID = this.props.taskListID;
     const taskItemID = this.props.taskItemID;
     return (event) => {
-      console.log(`clicked`);
       makeMutation(`mutation {
         removeTask(userid: 0, tasklistid:${taskListID}, taskid:${taskItemID}){
           id
