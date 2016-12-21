@@ -33,7 +33,7 @@ class TaskList extends Component {
           <h2 className="tasklisttitle">{this.props.taskList.title}</h2>
         </div>
         <section>
-          {taskitems}<TaskInput />
+          {taskitems}<TaskInput makeMutation={this.props.makeMutation} taskListID={this.props.taskListID}/>
         </section>
       </div>
     );
