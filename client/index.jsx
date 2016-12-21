@@ -21,7 +21,8 @@ class App extends Component {
   }
 
   /** Lifecycle Methods **/
-  componentDidMount(){
+  componentDidMount() {
+    // subql.subscribe('http://localhost:8080', `query {gtasklist{id position title tasks{ id content comments{ author idcontent}}}}`, null, this.update);
     // subscribe and this.update here
     // use this.update as the callback
     // subscribe http://localhost:4000/data
@@ -40,10 +41,10 @@ class App extends Component {
     }`,
     null,
     (data) => {
-      console.log(`!!!!!!!!!!!!!!!!!!!!! DATA RECIEVED !!!!!!!!!!!!!!!!!!!!!!!!!`);
-      console.log(data);
+      // console.log(`!!!!!!!!!!!!!!!!!!!!! DATA RECIEVED !!!!!!!!!!!!!!!!!!!!!!!!!`);
+      // console.log(data);
       if(data.data){
-        console.log(JSON.stringify(data.data, null, 2));
+        // console.log(JSON.stringify(data.data, null, 2));
         this.setState(data.data);
       }else{
         this.setState({gtasklist:data});
