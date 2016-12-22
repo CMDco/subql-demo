@@ -14,7 +14,7 @@ let db = {
               ]
             },
             {
-              title: 'repopulate JobQueue',
+              title: 'Repopulate JobQueue',
               content: 'Sometimes, JobQueue don\'t get placed back on the queue',
               comments: [
                 {author: 'Martin', content: 'The reload flag should be in the Job class not the watchdog class'},

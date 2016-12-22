@@ -24,8 +24,7 @@ class TaskItem extends Component {
       <div className='taskitem'>
       <article className='card-depth'>
         <h2><span className='taskitemtitle'>{this.props.taskItem.title}</span></h2><span className='removeTaskButton' onClick={this.getRemoveTask(this.props.taskListID)}>X</span>
-        <p>{this.props.taskItem.content}</p>
-
+        <p className='taskiteminput'>{this.props.taskItem.content}</p>
       </article>
       </div>
     )
