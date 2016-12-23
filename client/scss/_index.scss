@@ -27,15 +27,20 @@ header h2{
 #taskboard {
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  width: 100%;
   background-color: white;
+}
+
+#taskboardcontainer {
+  margin: 0 5%;
 }
 
 /*tasklist*/
 .tasklist {
   background-color: #e8e8e8;
   width: 100%;
-  margin: 15px 15px 0 22px;
+  margin: 15px 0px 0 0px;
 
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -74,25 +79,30 @@ header h2{
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.removeTaskButton:hover{
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .taskinput {
   display: flex;
   justify-content: flex-start;
-  flex-direction:column;
+  flex-direction: column;
   
   width: 200px;
   height:150px;
   background-color: white;
   margin: 15px;
-}
-
-.taskinput {
-
+  font-size: .9em;
 }
 
 .taskitemtitle {
   position: relative;
   top: 4px;
   left: 4px;
+  font-size: .9em;
+  font-weight: 600;
+  padding: 0 5px;
 }
 
 .tasktitleinput {
@@ -100,13 +110,20 @@ header h2{
   height: 17%;
   border: 0;
   background-color: $midTeal*1.444;
+  font-size: .9em;
+}
+
+.taskiteminput {
+  font-size: .9em;
+  padding: 0px 10px;
 }
 
 .taskbodyinput {
   width: 195px;
-  height:83%;
+  height: 83%;
   border: 0;
   resize: none;
+  font-size: .9em;
 }
 
 /*.taskinput input{
