@@ -15,7 +15,7 @@ class TaskItem extends Component {
         removeTask(userid: 0, tasklistid:${taskListID}, taskid:${taskItemID}){
           id
         }
-      }`)
+      }`);
       return;
     }
   }
